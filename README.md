@@ -1,5 +1,5 @@
 # Basic Web Services
-Simple Web APLI
+Simple Web API
 
 Build with Yii 2.0
 ------------
