@@ -1,9 +1,9 @@
 <?php
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
-        
+
 $config = [
-    'id'         => 'api',
+    'id' => 'api',
     'timeZone' => 'America/Sao_Paulo',
     'basePath'   => dirname(__DIR__),
     'bootstrap'  => ['log'],
@@ -30,7 +30,7 @@ $config = [
                         'warning'],
                     'categories' => ['yii\*',
                         'application'],
-                    'logFile'    => '@app/runtime/logs/' . date("Y-m-d", time()) . '.txt',
+                    //'logFile'    => '@app/runtime/logs/' . date("Y-m-d", time()) . '.txt',
                 ],
             ],
         ],

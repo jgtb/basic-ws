@@ -4,12 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
 
 class BaseController extends Controller {
 
     public function init() {
         parent::init();
-        Yii::$app->response->format = 'jsonApi';
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $this->enableCsrfValidation = false;
     }
 

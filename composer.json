@@ -22,7 +22,8 @@
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "yiisoft/yii2-jui": "*"
+        "yiisoft/yii2-jui": "*",
+        "nubs/random-name-generator": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

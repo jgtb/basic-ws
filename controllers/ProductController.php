@@ -15,8 +15,8 @@ class ProductController extends BaseController {
                 ->where(['category.user_id' => $id, 'product.status' => 1])
                 ->joinWith('category')
                 ->joinWith(['productTags' => function($query) {
-                        $query->select('product_tag.product_id, product_tag.tag_id, tag.description as tag_description')
-                        ->leftJoin('tag', 'product_tag.tag_id = tag.tag_id')
+                        $query
+                        ->joinWith('tag')
                         ->orderBy(['tag.description' => SORT_ASC]);
                     }])
                 ->orderBy(['category.description' => SORT_ASC, 'product.description' => SORT_ASC])
@@ -35,8 +35,8 @@ class ProductController extends BaseController {
         $model = Product::find()->where(['product.product_id' => $id])
                 ->joinWith('category')
                 ->joinWith(['productTags' => function($query) {
-                        $query->select('product_tag.product_id, product_tag.tag_id, tag.description as tag_description')
-                        ->leftJoin('tag', 'product_tag.tag_id = tag.tag_id')
+                        $query
+                        ->joinWith('tag')
                         ->orderBy(['tag.description' => SORT_ASC]);
                     }])
                 ->asArray()
