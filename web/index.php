@@ -1,6 +1,5 @@
 <?php
 
-//環境設定
 require(__DIR__ . '/../config/environment.php');
 
 require(__DIR__ . '/../vendor/autoload.php');

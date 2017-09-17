@@ -3,13 +3,25 @@
 namespace app\controllers;
 
 use Yii;
+use yii\filters\Cors;
 use app\models\User;
 
 class AuthController extends BaseController {
 
-    public function actionLogin() {
-        header("Access-Control-Allow-Origin: *");
+    public function behaviors() {
+        return [
+            'corsFilter' => [
+                'class' => Cors::className(),
+                'cors' => [
+                    'Origin' => ['*'],
+                    //'Access-Control-Request-Method' => ['POST', 'GET'],
+                    //'Access-Control-Request-Headers' => ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+                ],
+            ],
+        ];
+    }
 
+    public function actionLogin() {
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = User::find()->where(['email' => $data['email'], 'password' => sha1($data['password']), 'status' => 1])->asArray()->one();
@@ -38,7 +50,7 @@ class AuthController extends BaseController {
     }
 
     public function actionForgotPassword() {
-
+        
     }
 
 }

@@ -2,12 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:mysql796.umbler.com;dbname=basic',
-    'username' => 'jgtb',
-    'password' => 'am12lpaqde',
+    'dsn' => 'mysql:host=127.0.0.1;dbname=basic',
+    'username' => 'root',
+    'password' => 'mysql',
     'charset' => 'utf8',
-    //'enableSchemaCache' => true,
-    //'enableQueryCache' => true,
-    //'queryCacheDuration'=> 86400,
-    //'queryCache' => 'cache',
 ];
