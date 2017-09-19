@@ -8,8 +8,6 @@ use app\models\User;
 class UserController extends BaseController {
 
     public function actionView($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = $this->findModel($id)
                 ->asArray()
                 ->one();
@@ -21,8 +19,6 @@ class UserController extends BaseController {
     }
 
     public function actionCreate() {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = new User();
@@ -40,8 +36,6 @@ class UserController extends BaseController {
     }
 
     public function actionUpdate($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = $this->findModel($id)->one();
@@ -55,8 +49,6 @@ class UserController extends BaseController {
     }
 
     public function actionDelete($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = $this->findModel($id)->one();
         $model->status = 0;
 

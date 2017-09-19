@@ -14,6 +14,17 @@ class BaseController extends Controller {
         $this->enableCsrfValidation = false;
     }
 
+    public function behaviors() {
+        return [
+            'corsFilter' => [
+                'class' => \yii\filters\Cors::className(),
+                'cors' => [
+                    'Origin' => ['*'],
+                ],
+            ],
+        ];
+    }
+
     public function actionError() {
         $exception = Yii::$app->errorHandler->exception;
         return ["message" => $exception->getMessage()];

@@ -8,8 +8,6 @@ use app\models\Tag;
 class TagController extends BaseController {
 
     public function actionIndex($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $models = Tag::find()
                 ->where(['user_id' => $id, 'status' => 1])
                 ->orderBy(['description' => SORT_ASC])
@@ -23,8 +21,6 @@ class TagController extends BaseController {
     }
 
     public function actionView($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = $this->findModel($id)
                 ->asArray()
                 ->one();
@@ -36,8 +32,6 @@ class TagController extends BaseController {
     }
 
     public function actionCreate($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = new Tag();
@@ -52,8 +46,6 @@ class TagController extends BaseController {
     }
 
     public function actionUpdate($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = $this->findModel($id)->one();
@@ -66,8 +58,6 @@ class TagController extends BaseController {
     }
 
     public function actionDelete($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = $this->findModel($id)->one();
         $model->status = 0;
 

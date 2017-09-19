@@ -9,8 +9,6 @@ use app\models\ProductTag;
 class ProductController extends BaseController {
 
     public function actionIndex($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $models = Product::find()
                 ->where(['category.user_id' => $id, 'product.status' => 1])
                 ->joinWith('category')
@@ -30,8 +28,6 @@ class ProductController extends BaseController {
     }
 
     public function actionView($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = Product::find()->where(['product.product_id' => $id])
                 ->joinWith('category')
                 ->joinWith(['productTags' => function($query) {
@@ -49,8 +45,6 @@ class ProductController extends BaseController {
     }
 
     public function actionCreate() {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = new Product();
@@ -75,8 +69,6 @@ class ProductController extends BaseController {
     }
 
     public function actionUpdate($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $data = json_decode(file_get_contents('php://input'), true);
 
         $model = $this->findModel($id)->one();
@@ -102,8 +94,6 @@ class ProductController extends BaseController {
     }
 
     public function actionDelete($id) {
-        header("Access-Control-Allow-Origin: *");
-
         $model = $this->findModel($id)->one();
         $model->status = 0;
 
