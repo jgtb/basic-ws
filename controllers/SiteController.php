@@ -59,9 +59,9 @@ class SiteController extends BaseController {
                 $product->save();
 
                 for ($y = 0; $y < 3; $y++) {
-                    $productTag = new ProductTag();
+                    $productTag = new ProductTag(); 
                     $productTag->product_id = $product->product_id;
-                    $productTag->tag_id = rand($tIDS[0], $cIDS[count($tIDS) - 1]);
+                    $productTag->tag_id = rand($tIDS[0], $tIDS[count($tIDS) - 1]);
                     $productTag->save();
                 }
             }
