@@ -10,12 +10,15 @@ class AuthController extends BaseController {
     public function actionLogin() {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $model = User::find()->where(['email' => $data['email'], 'password' => sha1($data['password']), 'status' => 1])->asArray()->one();
+        $model = User::find()
+          ->where(['email' => $data['email'], 'password' => sha1($data['password']), 'status' => 1])
+          ->asArray()
+          ->one();
 
         if ($model)
             return $model;
 
-        return 0;
+        return null;
     }
 
     public function actionRegister() {
@@ -25,12 +28,13 @@ class AuthController extends BaseController {
         $model->username = $data['username'];
         $model->email = $data['email'];
         $model->password = $data['password'];
+        $model->img = 'face' . rand(1, 5) . '.jpg';
         $model->status = 1;
 
         if ($model->save())
             return 1;
 
-        return 0;
+        return null;
     }
 
     public function actionForgotPassword() {

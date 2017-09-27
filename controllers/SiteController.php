@@ -15,7 +15,7 @@ class SiteController extends BaseController {
         return 'Basic Web Services';
     }
 
-    public function actionGenerateData() {
+    public function actionData() {
         $generator = new \Nubs\RandomNameGenerator\Alliteration();
 
         for ($i = 0; $i < 5; $i++) {

@@ -13,8 +13,7 @@ class ProductController extends BaseController {
                 ->where(['category.user_id' => $id, 'product.status' => 1])
                 ->joinWith('category')
                 ->joinWith(['productTags' => function($query) {
-                        $query
-                        ->joinWith('tag')
+                        $query->joinWith('tag')
                         ->orderBy(['tag.description' => SORT_ASC]);
                     }])
                 ->orderBy(['category.description' => SORT_ASC, 'product.description' => SORT_ASC])
@@ -24,15 +23,14 @@ class ProductController extends BaseController {
         if ($models)
             return $models;
 
-        return 0;
+        return [];
     }
 
     public function actionView($id) {
         $model = Product::find()->where(['product.product_id' => $id])
                 ->joinWith('category')
                 ->joinWith(['productTags' => function($query) {
-                        $query
-                        ->joinWith('tag')
+                        $query->joinWith('tag')
                         ->orderBy(['tag.description' => SORT_ASC]);
                     }])
                 ->asArray()
@@ -41,7 +39,7 @@ class ProductController extends BaseController {
         if ($model)
             return $model;
 
-        return 0;
+        return [];
     }
 
     public function actionCreate() {
@@ -52,7 +50,7 @@ class ProductController extends BaseController {
         $model->description = $data['description'];
         $model->price = $data['price'];
         $model->quantity = $data['quantity'];
-        $model->img = $data['img'];
+        $model->img = rand(1, 50) . '.png';
         $model->status = 1;
 
         if ($model->save()) {
@@ -62,10 +60,10 @@ class ProductController extends BaseController {
                 $modelProductTag->tag_id = $tagID;
                 $modelProductTag->save();
             }
-            return 1;
+            return true;
         }
 
-        return 0;
+        return false;
     }
 
     public function actionUpdate($id) {
@@ -76,7 +74,7 @@ class ProductController extends BaseController {
         $model->description = $data['description'];
         $model->price = $data['price'];
         $model->quantity = $data['quantity'];
-        $model->img = $data['img'];
+        $model->img = rand(1, 50) . '.png';;
 
         if ($model->save()) {
             ProductTag::deleteAll(['product_id' => $model->product_id]);
@@ -87,10 +85,10 @@ class ProductController extends BaseController {
                 $modelProductTag->tag_id = $tagID;
                 $modelProductTag->save();
             }
-            return 1;
+            return true;
         }
 
-        return 0;
+        return false;
     }
 
     public function actionDelete($id) {
@@ -98,9 +96,9 @@ class ProductController extends BaseController {
         $model->status = 0;
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     protected function findModel($id) {

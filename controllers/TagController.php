@@ -17,7 +17,7 @@ class TagController extends BaseController {
         if ($models)
             return $models;
 
-        return 0;
+        return [];
     }
 
     public function actionView($id) {
@@ -28,7 +28,7 @@ class TagController extends BaseController {
         if ($model)
             return $model;
 
-        return 0;
+        return [];
     }
 
     public function actionCreate($id) {
@@ -40,9 +40,9 @@ class TagController extends BaseController {
         $model->status = 1;
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     public function actionUpdate($id) {
@@ -52,9 +52,9 @@ class TagController extends BaseController {
         $model->description = $data['description'];
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     public function actionDelete($id) {
@@ -62,9 +62,9 @@ class TagController extends BaseController {
         $model->status = 0;
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     protected function findModel($id) {

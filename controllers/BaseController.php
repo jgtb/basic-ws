@@ -19,7 +19,7 @@ class BaseController extends Controller {
             'corsFilter' => [
                 'class' => \yii\filters\Cors::className(),
                 'cors' => [
-                    'Origin' => ['*'],
+                    'Origin' => ['*']
                 ],
             ],
         ];

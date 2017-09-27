@@ -15,7 +15,7 @@ class UserController extends BaseController {
         if ($model)
             return $model;
 
-        return 0;
+        return [];
     }
 
     public function actionCreate() {
@@ -30,9 +30,9 @@ class UserController extends BaseController {
         $model->status = 1;
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     public function actionUpdate($id) {
@@ -43,9 +43,9 @@ class UserController extends BaseController {
         $model->email = $data['email'];
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     public function actionDelete($id) {
@@ -53,9 +53,9 @@ class UserController extends BaseController {
         $model->status = 0;
 
         if ($model->save())
-            return 1;
+            return true;
 
-        return 0;
+        return false;
     }
 
     protected function findModel($id) {
