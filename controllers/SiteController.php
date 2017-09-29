@@ -8,6 +8,8 @@ use app\models\Category;
 use app\models\Tag;
 use app\models\Product;
 use app\models\ProductTag;
+use app\models\Checklist;
+use app\models\ChecklistProduct;
 
 class SiteController extends BaseController {
 
@@ -57,14 +59,31 @@ class SiteController extends BaseController {
                 $product->img = ($k + 1) . '.png';
                 $product->status = 1;
                 $product->save();
+                $pIDS[$k] = $product->product_id;
 
                 for ($y = 0; $y < 3; $y++) {
-                    $productTag = new ProductTag(); 
+                    $productTag = new ProductTag();
                     $productTag->product_id = $product->product_id;
                     $productTag->tag_id = rand($tIDS[0], $tIDS[count($tIDS) - 1]);
                     $productTag->save();
                 }
             }
+
+            for ($p = 0; $p < 15; $p++) {
+                $checklist = new Checklist();
+                $checklist->user_id = $user->user_id;
+                $checklist->description = $generator->getName();
+                $checklist->status = 1;
+                $checklist->save();
+
+                for($m = 0; $m < 4; $m++) {
+                  $checklistProduct = new ChecklistProduct();
+                  $checklistProduct->checklist_id = $checklist->checklist_id;
+                  $checklistProduct->product_id = rand($pIDS[0], $pIDS[count($pIDS) - 1]);
+                  $checklistProduct->save();
+                }
+            }
+
         }
     }
 

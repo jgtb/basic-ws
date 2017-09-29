@@ -18,7 +18,7 @@ class AuthController extends BaseController {
         if ($model)
             return $model;
 
-        return null;
+        return false;
     }
 
     public function actionRegister() {
@@ -34,7 +34,7 @@ class AuthController extends BaseController {
         if ($model->save())
             return 1;
 
-        return null;
+        return false;
     }
 
     public function actionForgotPassword() {
