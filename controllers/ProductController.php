@@ -16,7 +16,7 @@ class ProductController extends BaseController {
                         $query->joinWith('tag')
                         ->orderBy(['tag.description' => SORT_ASC]);
                     }])
-                ->orderBy(['category.description' => SORT_ASC, 'product.description' => SORT_ASC])
+                ->orderBy(['product.description' => SORT_ASC, 'category.description' => SORT_ASC])
                 ->asArray()
                 ->all();
 

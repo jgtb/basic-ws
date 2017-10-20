@@ -31,7 +31,7 @@ class SiteController extends BaseController {
             $user->save();
 
             $cIDS = [];
-            for ($j = 0; $j < 18; $j++) {
+            for ($j = 0; $j < 10000; $j++) {
                 $category = new Category();
                 $category->user_id = $user->user_id;
                 $category->description = $generator->getName();
