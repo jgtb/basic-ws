@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\filters\Cors;
 
 class BaseController extends Controller {
 
@@ -17,9 +18,10 @@ class BaseController extends Controller {
     public function behaviors() {
         return [
             'corsFilter' => [
-                'class' => \yii\filters\Cors::className(),
+                'class' => Cors::className(),
                 'cors' => [
-                    'Origin' => ['*']
+                    'Origin' => ['*'],
+                    'Access-Control-Request-Headers' => ['*']
                 ],
             ],
         ];

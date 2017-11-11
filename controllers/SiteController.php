@@ -17,6 +17,12 @@ class SiteController extends BaseController {
         return 'Basic Web Services';
     }
 
+    public function actionFn() {
+        $model = new Product();
+        $columns = $model->getTableSchema()->columns;        
+        return $columns;
+    }
+
     public function actionData() {
         $generator = new \Nubs\RandomNameGenerator\Alliteration();
 
@@ -31,7 +37,7 @@ class SiteController extends BaseController {
             $user->save();
 
             $cIDS = [];
-            for ($j = 0; $j < 10000; $j++) {
+            for ($j = 0; $j < 15; $j++) {
                 $category = new Category();
                 $category->user_id = $user->user_id;
                 $category->description = $generator->getName();
