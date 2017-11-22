@@ -17,12 +17,6 @@ class SiteController extends BaseController {
         return 'Basic Web Services';
     }
 
-    public function actionFn() {
-        $model = new Product();
-        $columns = $model->getTableSchema()->columns;        
-        return $columns;
-    }
-
     public function actionData() {
         $generator = new \Nubs\RandomNameGenerator\Alliteration();
 

@@ -50,7 +50,7 @@ class ChecklistController extends BaseController {
         $model->status = 1;
 
         if ($model->save()) {
-            foreach ($data['checklistProducts'] as $productID) {
+            foreach ($data['items'] as $productID) {
                 $modelChecklistProduct = new ChecklistProduct();
                 $modelChecklistProduct->checklist_id = $model->checklist_id;
                 $modelChecklistProduct->product_id = $productID;
@@ -65,15 +65,14 @@ class ChecklistController extends BaseController {
     public function actionUpdate($id) {
         $data = json_decode(file_get_contents('php://input'), true);
 
-        $model = $this->findModel($id);
-        $model->user_id = $id;
+        $model = $this->findModel($id)->one();
         $model->description = $data['description'];
         $model->status = 1;
 
         if ($model->save()) {
             ChecklistProduct::deleteAll(['checklist_id' => $model->checklist_id]);
 
-            foreach ($data['checklistProducts'] as $productID) {
+            foreach ($data['items'] as $productID) {
                 $modelChecklistProduct = new ChecklistProduct();
                 $modelChecklistProduct->checklist_id = $model->checklist_id;
                 $modelChecklistProduct->product_id = $productID;
