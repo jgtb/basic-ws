@@ -16,6 +16,8 @@ class User extends \yii\db\ActiveRecord {
                 [['status'], 'integer'],
                 [['username', 'email', 'img', 'hash'], 'string', 'max' => 225],
                 [['password'], 'string', 'max' => 45],
+                [['email'], 'email'],
+                [['email'], 'unique']
         ];
     }
 

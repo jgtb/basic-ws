@@ -27,12 +27,12 @@ class AuthController extends BaseController {
         $model = new User();
         $model->username = $data['username'];
         $model->email = $data['email'];
-        $model->password = $data['password'];
+        $model->password = sha1($data['password']);
         $model->img = 'face' . rand(1, 5) . '.jpg';
         $model->status = 1;
 
         if ($model->save())
-            return 1;
+            return true;
 
         return false;
     }
