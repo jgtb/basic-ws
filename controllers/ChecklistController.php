@@ -50,10 +50,10 @@ class ChecklistController extends BaseController {
         $model->status = 1;
 
         if ($model->save()) {
-            foreach ($data['items'] as $productID) {
+            foreach ($data['productTags'] as $modelProduct) {
                 $modelChecklistProduct = new ChecklistProduct();
                 $modelChecklistProduct->checklist_id = $model->checklist_id;
-                $modelChecklistProduct->product_id = $productID;
+                $modelChecklistProduct->product_id = $modelProduct['product_id'];
                 $modelChecklistProduct->save();
             }
             return true;
@@ -72,10 +72,10 @@ class ChecklistController extends BaseController {
         if ($model->save()) {
             ChecklistProduct::deleteAll(['checklist_id' => $model->checklist_id]);
 
-            foreach ($data['items'] as $productID) {
+            foreach ($data['productTags'] as $modelProduct) {
                 $modelChecklistProduct = new ChecklistProduct();
                 $modelChecklistProduct->checklist_id = $model->checklist_id;
-                $modelChecklistProduct->product_id = $productID;
+                $modelChecklistProduct->product_id = $modelProduct['product_id'];
                 $modelChecklistProduct->save();
             }
             return true;
