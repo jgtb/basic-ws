@@ -21,7 +21,7 @@ class BaseController extends Controller {
                 'class' => Cors::className(),
                 'cors' => [
                     'Origin' => ['*'],
-                    'Access-Control-Allow-Headers' => ['Content-Type'],
+                    'Access-Control-Request-Headers' => ['Content-Type'],
                 ],
             ],
         ];
