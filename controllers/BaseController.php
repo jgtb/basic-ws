@@ -21,7 +21,7 @@ class BaseController extends Controller {
                 'class' => Cors::className(),
                 'cors' => [
                     'Origin' => ['*'],
-                    'Access-Control-Request-Headers' => ['Content-Type'],
+                    'Access-Control-Allow-Headers' => ['Content-Type'],
                 ],
             ],
         ];
@@ -41,5 +41,5 @@ class BaseController extends Controller {
             }
         }
     }
-    
+
 }
